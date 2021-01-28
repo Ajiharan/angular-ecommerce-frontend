@@ -1,16 +1,57 @@
 <div class="app-container">
   <div class="app-login-container">
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
       <h2 class="text-primary text-center">Login Form</h2>
       <div class="form-group">
         <label>Email Address</label>
-        <input type="email" class="form-control" />
+        <input type="email" class="form-control" formControlName="emailId" />
+
+        <p
+          [hidden]="
+            !(
+              loginForm.controls.emailId.hasError('required') &&
+              !loginForm.controls.emailId.pristine
+            )
+          "
+          class="errorLog"
+        >
+          *Email-Id is required.
+        </p>
+        <p
+          [hidden]="
+            loginForm.controls.emailId.hasError('required') ||
+            !loginForm.controls.emailId.hasError('email')
+          "
+          class="errorLog"
+        >
+          *Email-Id is invalid.
+        </p>
       </div>
       <div class="form-group">
         <label>Password</label>
-        <input type="password" class="form-control" />
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+        <p
+          [hidden]="
+            !(
+              loginForm.controls.password.hasError('required') &&
+              !loginForm.controls.password.pristine
+            )
+          "
+          class="errorLog"
+        >
+          *Password is required.
+        </p>
       </div>
-      <input type="submit" value="signIn" class="btn btn-info btn-block mt-4" />
+      <input
+        type="submit"
+        value="signIn"
+        class="btn btn-info btn-block mt-4"
+        [disabled]="loginForm.invalid"
+      />
     </form>
   </div>
 </div>
