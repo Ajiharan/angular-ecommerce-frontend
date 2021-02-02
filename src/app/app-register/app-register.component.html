@@ -51,18 +51,30 @@
         <input
           type="password"
           class="form-control"
-          formControlName="password"
+          formControlName="conformPassword"
         />
         <p
           [hidden]="
             !(
-              registerForm.controls.password.hasError('required') &&
-              !registerForm.controls.password.pristine
+              registerForm.controls.conformPassword.hasError('required') &&
+              !registerForm.controls.conformPassword.pristine
             )
           "
           class="errorLog"
         >
           *Conform Password is required.
+        </p>
+        <p
+          [hidden]="
+            !(
+              registerForm.controls.conformPassword.hasError(
+                'invalidPassword'
+              ) && !registerForm.controls.conformPassword.hasError('required')
+            )
+          "
+          class="errorLog"
+        >
+          *Password did'nt match.
         </p>
       </div>
       <input
