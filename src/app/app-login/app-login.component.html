@@ -52,6 +52,11 @@
         class="btn btn-info btn-block mt-4"
         [disabled]="loginForm.invalid"
       />
+      <div class="login-bottom">
+        <p class="login-bottom-header">If you don't have any account?</p>
+        <p class="login-bottom-details" routerLink="register">create one</p>
+      </div>
     </form>
   </div>
 </div>
+<router-outlet></router-outlet>

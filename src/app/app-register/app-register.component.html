@@ -1,0 +1,81 @@
+<div class="app-container">
+  <div class="app-login-container">
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+      <h2 class="text-primary text-center">Register Form</h2>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" class="form-control" formControlName="emailId" />
+
+        <p
+          [hidden]="
+            !(
+              registerForm.controls.emailId.hasError('required') &&
+              !registerForm.controls.emailId.pristine
+            )
+          "
+          class="errorLog"
+        >
+          *Email-Id is required.
+        </p>
+        <p
+          [hidden]="
+            registerForm.controls.emailId.hasError('required') ||
+            !registerForm.controls.emailId.hasError('email')
+          "
+          class="errorLog"
+        >
+          *Email-Id is invalid.
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+        <p
+          [hidden]="
+            !(
+              registerForm.controls.password.hasError('required') &&
+              !registerForm.controls.password.pristine
+            )
+          "
+          class="errorLog"
+        >
+          *Password is required.
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Conform Password</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+        <p
+          [hidden]="
+            !(
+              registerForm.controls.password.hasError('required') &&
+              !registerForm.controls.password.pristine
+            )
+          "
+          class="errorLog"
+        >
+          *Conform Password is required.
+        </p>
+      </div>
+      <input
+        type="submit"
+        value="Register"
+        class="btn btn-info btn-block mt-4"
+        [disabled]="registerForm.invalid"
+      />
+      <div class="login-bottom">
+        <p class="login-bottom-header">If you already have account</p>
+        <p class="login-bottom-details" routerLink="">sign-in account</p>
+      </div>
+    </form>
+  </div>
+</div>
+<router-outlet></router-outlet>

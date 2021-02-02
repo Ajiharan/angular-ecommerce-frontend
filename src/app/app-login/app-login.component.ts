@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-app-login',
   templateUrl: './app-login.component.html',
   styleUrls: ['./app-login.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppLoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({

@@ -1,0 +1,50 @@
+.app-container {
+  padding-top: 10%;
+  height: 500px;
+  padding-left: 35%;
+  padding-right: 35%;
+  .app-login-container {
+    background-color: rgb(250, 250, 250);
+    box-shadow: 2px 1px 1px 0px #ececec;
+    padding: 40px;
+    border-radius: 20px;
+    form {
+      input[type="email"],
+      input[type="password"] {
+        border: none;
+        outline: none;
+        background-color: whitesmoke;
+        border-bottom: 2px solid rgb(165, 165, 165);
+        background-color: #f1f1f1;
+        border-radius: 0;
+        &:focus {
+          outline: none !important;
+          box-shadow: none;
+        }
+      }
+      .errorLog {
+        color: red;
+        font-weight: 450;
+      }
+    }
+  }
+  .login-bottom {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &-header {
+      font-size: 16px;
+      color: rgb(145, 173, 233);
+    }
+    &-details {
+      font-size: 15px;
+      color: rgb(145, 173, 233);
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

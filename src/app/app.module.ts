@@ -53,6 +53,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { AppRegisterComponent } from './app-register/app-register.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     AppHomeComponent,
     AppLoginComponent,
     AppPageNotFoundComponent,
+    AppRegisterComponent,
   ],
   imports: [
     HttpClientModule,
