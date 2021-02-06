@@ -54,7 +54,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { AppRegisterComponent } from './app-register/app-register.component';
-
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+import * as UserReducer from './state/userReducer';
+import { UserEffects } from './state/UserEffect';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,6 +122,13 @@ import { AppRegisterComponent } from './app-register/app-register.component';
     OverlayModule,
     PortalModule,
     ScrollingModule,
+    StoreModule.forRoot({ registerUserData: UserReducer.reducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    StoreRouterConnectingModule.forRoot(),
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
