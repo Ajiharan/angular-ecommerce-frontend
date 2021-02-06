@@ -5,6 +5,15 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { addUserRequest } from '../state/action';
+import {
+  MatDialogRef,
+  MatDialog,
+  MatDialogConfig,
+} from '@angular/material/dialog';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { MatLoadingComponent } from '../mat-loading/mat-loading.component';
 @Component({
   selector: 'app-app-register',
   templateUrl: './app-register.component.html',
@@ -20,15 +29,19 @@ export class AppRegisterComponent implements OnInit {
       this.checkPasswordMatch.bind(this),
     ]),
   });
-  constructor() {}
+  constructor(
+    private store: Store<any>,
+    private dialogRef: MatDialog,
+    private router: Router
+  ) {}
 
   checkPasswordMatch(
     control: AbstractControl
   ): { [key: string]: boolean } | null {
-    console.log(
-      'this.registerForm?.controls.password.value',
-      this.registerForm?.controls.password.value
-    );
+    // console.log(
+    //   'this.registerForm?.controls.password.value',
+    //   this.registerForm?.controls.password.value
+    // );
     if (this.registerForm?.controls.password.value !== control.value) {
       return { invalidPassword: true };
     }
@@ -40,5 +53,18 @@ export class AppRegisterComponent implements OnInit {
       this.registerForm.controls.conformPassword.updateValueAndValidity();
     });
   }
-  submitForm() {}
+  submitForm() {
+    this.store.dispatch(addUserRequest({ payload: this.registerForm.value }));
+    this.registerForm.reset();
+    const dialogRef = this.dialogRef.open(MatLoadingComponent, {
+      data: { status: 'Loading', loading: 'false' },
+      panelClass: 'mat-loading-container',
+      height: '50vh',
+      width: '50vw',
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      console.log('panelClosed');
+    });
+  }
 }

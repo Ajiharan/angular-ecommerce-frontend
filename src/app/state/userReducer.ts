@@ -3,7 +3,7 @@ import { addUserFailure, addUserRequest, addUserSuccess } from './action';
 import { IUser, UserDetail } from './user';
 
 export interface IUserState {
-  user: IUser;
+  user: IUser | string;
   error: any;
   loading: boolean;
 }

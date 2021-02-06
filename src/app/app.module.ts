@@ -61,6 +61,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import * as UserReducer from './state/userReducer';
 import { UserEffects } from './state/UserEffect';
+import { MatLoadingComponent } from './mat-loading/mat-loading.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +70,7 @@ import { UserEffects } from './state/UserEffect';
     AppLoginComponent,
     AppPageNotFoundComponent,
     AppRegisterComponent,
+    MatLoadingComponent,
   ],
   imports: [
     HttpClientModule,
