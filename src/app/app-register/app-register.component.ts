@@ -59,8 +59,8 @@ export class AppRegisterComponent implements OnInit {
     const dialogRef = this.dialogRef.open(MatLoadingComponent, {
       data: { status: 'Loading', loading: 'false' },
       panelClass: 'mat-loading-container',
-      height: '50vh',
-      width: '50vw',
+      height: '40vh',
+      width: '40vw',
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((res) => {

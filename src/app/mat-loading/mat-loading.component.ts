@@ -10,27 +10,26 @@ import { registerUserSelector } from '../state/userSelector';
 })
 export class MatLoadingComponent implements OnInit {
   status: string = '';
-  loading: boolean = false;
+  loading: boolean = true;
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: { status?: any; loading?: any },
     public dialogRef: MatDialogRef<MatLoadingComponent>,
     private store: Store<any>
-  ) {
-    this.status = data.status;
-    this.loading = data.loading;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.store.select(registerUserSelector).subscribe((res: IUserState) => {
-      // console.log('res', res, this.loading);
+      console.log('res', this.loading);
+
       if (!res.loading) {
         setTimeout(() => {
+          this.loading = res.loading;
           this.dialogRef.close();
         }, 2000);
       }
     });
     this.dialogRef.updatePosition({
-      top: '5rem',
+      top: '10rem',
       bottom: '5rem',
     });
   }
