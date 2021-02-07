@@ -19,12 +19,15 @@ export class MatLoadingComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(registerUserSelector).subscribe((res: IUserState) => {
-      console.log('res', this.loading);
+      console.log('res', res);
 
       if (!res.loading) {
         setTimeout(() => {
           this.loading = res.loading;
-          this.dialogRef.close();
+          this.dialogRef.close({
+            message: res?.error ? res?.error?.error : res?.user,
+            isError: res?.error?.error ? true : false,
+          });
         }, 2000);
       }
     });

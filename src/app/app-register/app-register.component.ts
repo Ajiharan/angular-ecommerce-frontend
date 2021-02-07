@@ -14,6 +14,7 @@ import {
 } from '@angular/material/dialog';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MatLoadingComponent } from '../mat-loading/mat-loading.component';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-app-register',
   templateUrl: './app-register.component.html',
@@ -64,7 +65,26 @@ export class AppRegisterComponent implements OnInit {
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((res) => {
-      console.log('panelClosed');
+      console.log(res);
+      if (res.isError) {
+        Swal.fire({
+          title: 'Failure!',
+          text: res.message,
+          timer: 2000,
+          showConfirmButton: false,
+          showCloseButton: false,
+          icon: 'warning',
+        });
+      } else {
+        Swal.fire({
+          title: 'Success!',
+          text: res.message,
+          timer: 2000,
+          showConfirmButton: false,
+          showCloseButton: false,
+          icon: 'success',
+        });
+      }
     });
   }
 }
