@@ -84,6 +84,7 @@ export class AppRegisterComponent implements OnInit {
           showCloseButton: false,
           icon: 'success',
         });
+        this.router.navigate(['']);
       }
     });
   }

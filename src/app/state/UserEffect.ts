@@ -17,7 +17,6 @@ export class UserEffects {
       exhaustMap((action) => {
         return this.userService.postData(action.payload).pipe(
           map((response) => {
-            console.log('response', response);
             return addUserSuccess({
               payload: response,
             });
