@@ -1,3 +1,3 @@
 export interface ILoginDetail {
-  tokenId?: string;
+  token?: string;
 }

@@ -4,7 +4,14 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, Observable, of } from 'rxjs';
 import { map, mergeMap, exhaustMap, catchError } from 'rxjs/operators';
 import { IUser, UserDetail } from './user';
-import { addUserFailure, addUserRequest, addUserSuccess } from './action';
+import {
+  addUserFailure,
+  addUserRequest,
+  addUserSuccess,
+  loginUserFailure,
+  loginUserRequest,
+  loginUserSuccess,
+} from './action';
 @Injectable()
 export class UserEffects {
   constructor(
@@ -22,6 +29,22 @@ export class UserEffects {
             });
           }),
           catchError((err) => of(addUserFailure({ error: err })))
+        );
+      })
+    )
+  );
+
+  getUserToken$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(loginUserRequest),
+      exhaustMap((action) => {
+        return this.userService.loginUser(action.payload).pipe(
+          map((response) => {
+            return loginUserSuccess({
+              payload: response,
+            });
+          }),
+          catchError((err) => of(loginUserFailure({ error: err })))
         );
       })
     )

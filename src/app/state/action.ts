@@ -18,7 +18,7 @@ export const addUserFailure = createAction(
 
 export const loginUserRequest = createAction(
   'ADD_LOGIN_REQUEST',
-  props<{ payload: ILoginDetail }>()
+  props<{ payload: IUser }>()
 );
 export const loginUserSuccess = createAction(
   'ADD_LOGIN_SUCCESS',

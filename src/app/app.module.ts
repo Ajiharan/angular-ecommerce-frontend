@@ -124,7 +124,10 @@ import { MatLoadingComponent } from './mat-loading/mat-loading.component';
     OverlayModule,
     PortalModule,
     ScrollingModule,
-    StoreModule.forRoot({ registerUserDetails: UserReducer.reducer }),
+    StoreModule.forRoot({
+      registerUserDetails: UserReducer.reducer,
+      loginUserDatas: UserReducer.loginReduer,
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

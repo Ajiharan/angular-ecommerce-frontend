@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { loginUserRequest } from '../state/action';
 @Component({
   selector: 'app-app-login',
   templateUrl: './app-login.component.html',
@@ -11,7 +13,7 @@ export class AppLoginComponent implements OnInit {
     emailId: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     // this.loginForm =
@@ -19,6 +21,8 @@ export class AppLoginComponent implements OnInit {
 
   submitForm() {
     console.log(this.loginForm.value);
+
+    this.store.dispatch(loginUserRequest({ payload: this.loginForm.value }));
     this.loginForm.reset();
   }
 }

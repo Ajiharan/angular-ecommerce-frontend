@@ -7,12 +7,8 @@ import {
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { addUserRequest } from '../state/action';
-import {
-  MatDialogRef,
-  MatDialog,
-  MatDialogConfig,
-} from '@angular/material/dialog';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { MatLoadingComponent } from '../mat-loading/mat-loading.component';
 import Swal from 'sweetalert2';
 @Component({
