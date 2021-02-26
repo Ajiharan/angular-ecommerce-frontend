@@ -14,7 +14,7 @@ export interface IUserState {
   user: IUser | string;
   error: any;
   loading: boolean;
-  token?: ILoginDetail | null;
+  token?: string | null;
 }
 
 export const initialState: IUserState = {

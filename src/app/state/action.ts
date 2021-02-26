@@ -22,7 +22,7 @@ export const loginUserRequest = createAction(
 );
 export const loginUserSuccess = createAction(
   'ADD_LOGIN_SUCCESS',
-  props<{ payload: ILoginDetail }>()
+  props<{ payload: string }>()
 );
 export const loginUserFailure = createAction(
   'ADD_LOGIN_FAILURE',

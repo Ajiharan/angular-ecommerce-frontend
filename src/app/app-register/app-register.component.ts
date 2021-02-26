@@ -35,10 +35,6 @@ export class AppRegisterComponent implements OnInit {
   checkPasswordMatch(
     control: AbstractControl
   ): { [key: string]: boolean } | null {
-    // console.log(
-    //   'this.registerForm?.controls.password.value',
-    //   this.registerForm?.controls.password.value
-    // );
     if (this.registerForm?.controls.password.value !== control.value) {
       return { invalidPassword: true };
     }

@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { loginUserRequest } from '../state/action';
+import { IUserState } from '../state/userReducer';
+import { loginUserSelector, registerUserSelector } from '../state/userSelector';
 @Component({
   selector: 'app-app-login',
   templateUrl: './app-login.component.html',
@@ -13,10 +16,18 @@ export class AppLoginComponent implements OnInit {
     emailId: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(private store: Store) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
-    // this.loginForm =
+    this.store
+      .select(loginUserSelector)
+      .pipe(distinctUntilChanged())
+      .subscribe((res: IUserState) => {
+        console.log('token res', res);
+        if (!!res!.token) {
+          window.localStorage.setItem('userToken', res!.token);
+        }
+      });
   }
 
   submitForm() {
